@@ -1,31 +1,31 @@
-import React, { useRef } from 'react';
+import React, { forwardRef } from 'react';
 import { useButton, FocusRing } from 'react-aria';
 import './button.css';
 
-function Button({ children, onClick, ...rest }) {
-  // const { children } = props;
-  const btnRef = useRef();
+const Button = forwardRef((props, ref) => {
+  const { children, onClick, style, ...rest } = props;
   const { buttonProps, isPressed } = useButton(
     {
       ...rest,
       onPress: onClick,
     },
-    btnRef
+    ref
   );
   return (
     <FocusRing focusRingClass="ring">
       <button
-        ref={btnRef}
+        ref={ref}
         {...buttonProps}
         style={{
           userSelect: 'none',
           backgroundColor: isPressed && '#aaa',
+          ...style,
         }}
       >
         {children}
       </button>
     </FocusRing>
   );
-}
+});
 
 export default Button;
