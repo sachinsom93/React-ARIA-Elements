@@ -1,8 +1,10 @@
 import React, { useRef, forwardRef } from 'react';
 import { useLocale, useNumberField } from 'react-aria';
+import { useNumberFieldState } from 'react-stately';
 
 const InputNumberField = forwardRef((props, ref) => {
   const inputRef = ref ? ref : useRef(null);
+  const state = useNumberFieldState(props);
   const { locale } = useLocale();
   const {
     labelProps,

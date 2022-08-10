@@ -89,10 +89,10 @@ export default function App() {
       <InputNumberField
         label="Enter Amount"
         defaultValue={10000}
-        formatOptions={{
-          style: 'currency',
-          currency: 'indian',
-        }}
+        // formatOptions={{
+        //   style: 'currency',
+        //   currency: 'indian',
+        // }}
       />
     </div>
   );
