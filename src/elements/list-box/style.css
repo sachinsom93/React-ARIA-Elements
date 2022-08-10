@@ -1,0 +1,74 @@
+:root {
+  --selected-color: slateblue;
+  --light-hover-color: white;
+}
+.select {
+  background-color: var(--selected-color);
+}
+
+[role='listbox'] {
+  font-size: 0.8rem;
+  width: fit-content;
+  padding: 0;
+  margin: 0.5em 0;
+  border: 1px solid var(--selected-color, slateblue);
+  list-style: none;
+  overflow: auto;
+  align-items: center;
+}
+
+/* [role='listbox'] li {
+  height: 1.6em;
+  line-height: 1.6em;
+  align-items: center;
+} */
+
+[role='option'] {
+  margin: 2px;
+  font-size: 0.8rem;
+  padding: 5px;
+  outline: none;
+  cursor: default;
+  display: flex;
+  align-items: center;
+  color: #333;
+  padding-left: calc(16px + 8px);
+  padding-right: 10px;
+  --selected-color: slateblue;
+}
+
+[role='option'] svg {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+}
+[role='option'][aria-selected='true'] {
+  color: var(--selected-color, slateblue);
+  font-weight: 600;
+  padding-left: 4px;
+}
+
+[role='option'][aria-selected='true'] svg {
+  color: var(--selected-color, slateblue);
+}
+
+[role='option'][aria-selected='true']:hover svg {
+  color: var(--light-hover-color, slateblue);
+  background: transparent;
+}
+
+[role='option']:focus:not(:focus-visible),
+[role='option']:hover {
+  outline: none;
+  color: white;
+  background: var(--selected-color, slateblue);
+}
+
+[role='option']:focus-visible {
+  outline: 1.5px solid var(--selected-color, slateblue);
+  background: var(--selected-color, slateblue);
+  color: var(--light-hover-color);
+}
+[role='option']:focus-visible svg {
+  color: var(--light-hover-color);
+}
