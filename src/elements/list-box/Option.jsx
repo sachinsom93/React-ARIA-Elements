@@ -1,10 +1,14 @@
 import React, { useRef } from 'react';
 import { useOption, mergeProps, useFocusRing } from 'react-aria';
+import { CheckIcon } from '@heroicons/react/solid';
 
 function Option({ item, state }) {
   const optionRef = useRef();
   const { optionProps, isSelected, isDisabled } = useOption(
-    { key: item.key },
+    {
+      key: item.key,
+      shouldSelectOnPressUp: !state.selectionManager.isSelected(item.key),
+    },
     state,
     optionRef
   );
@@ -23,6 +27,9 @@ function Option({ item, state }) {
         outline: isFocusVisible ? '2px solid black' : 'none',
       }}
     >
+      {isSelected && (
+        <CheckIcon aria-hidden="true" style={{ color: 'white' }} />
+      )}
       {item.rendered}
     </li>
   );

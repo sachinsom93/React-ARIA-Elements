@@ -1,11 +1,11 @@
-import React, { useRef } from 'react';
+import React, { useRef, forwardRef } from 'react';
 import { useListBox } from 'react-aria';
 import { useListState } from 'react-stately';
 import Option from './Option';
 
-function ListBox(props) {
-  const listBoxRef = useRef();
-  const state = useListState(props);
+const ListBox = forwardRef((props, ref) => {
+  const listBoxRef = ref ? ref : useRef();
+  const state = props?.state ? props?.state : useListState(props);
   const { listBoxProps, labelProps } = useListBox(props, state, listBoxRef);
   return (
     <>
@@ -20,7 +20,9 @@ function ListBox(props) {
           margin: '.5em 0',
           border: '0.5px solid black',
           listStyle: 'none',
+          maxHeight: '150px',
           overflow: 'auto',
+          width: '100%',
         }}
       >
         {[...state.collection].map((item) =>
@@ -31,6 +33,6 @@ function ListBox(props) {
       </ul>
     </>
   );
-}
+});
 
 export default ListBox;

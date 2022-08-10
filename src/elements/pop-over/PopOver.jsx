@@ -17,7 +17,7 @@ import { useOverlayTriggerState } from 'react-stately';
 // Reuse the Button from your component library. See below for details.
 import Button from '../button/Button';
 
-const PopoverInner = React.forwardRef(
+export const Overley = React.forwardRef(
   ({ title, children, isOpen, onClose, style, ...otherProps }, ref) => {
     // Handle interacting outside the dialog and pressing
     // the Escape key to close the modal.
@@ -26,10 +26,10 @@ const PopoverInner = React.forwardRef(
         onClose,
         isOpen,
         isDismissable: true,
+        shouldCloseOnBlur: true,
       },
       ref
     );
-
     // Hide content outside the modal from screen readers.
     let { modalProps } = useModal();
 
@@ -44,7 +44,6 @@ const PopoverInner = React.forwardRef(
           style={{
             background: 'white',
             color: 'black',
-            padding: 30,
             ...style,
           }}
         >
@@ -94,7 +93,7 @@ function PopOver() {
       </Button>
       {state.isOpen && (
         <OverlayContainer>
-          <PopoverInner
+          <Overley
             {...overlayProps}
             {...positionProps}
             ref={overlayRef}
@@ -103,7 +102,7 @@ function PopOver() {
             onClose={state.close}
           >
             This is the content of the popover.
-          </PopoverInner>
+          </Overley>
         </OverlayContainer>
       )}
     </>

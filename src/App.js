@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import './style.css';
 import Button from './elements/button/Button';
 import ToggleButton from './elements/toggle-button/ToggleButton';
 import ListBox from './elements/list-box/ListBox';
 import ListItem from './elements/list-box/ListItem';
 import PopOver from './elements/pop-over/PopOver';
+import Select from './elements/select/Select';
 
 export default function App() {
+  const selectRef = useRef();
   const [isSeletedBtn, setSelectedBtn] = React.useState(false);
   const [selectedItem, setSelectedItem] = React.useState(new Set(['']));
   return (
@@ -39,7 +41,18 @@ export default function App() {
         <ListItem key="ham">Ham</ListItem>
       </ListBox>
 
+      <h2>PopOver</h2>
       <PopOver />
+
+      <h2>Select</h2>
+      <Select label="Favorite Color" ref={selectRef}>
+        <ListItem key="lettuce">Lettuce</ListItem>
+        <ListItem key="tomato">Tomato</ListItem>
+        <ListItem key="cheese">Cheese</ListItem>
+        <ListItem key="tuna">Tuna Salad</ListItem>
+        <ListItem key="egg">Egg Salad</ListItem>
+        <ListItem key="ham">Ham</ListItem>
+      </Select>
     </div>
   );
 }
