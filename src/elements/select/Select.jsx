@@ -4,18 +4,19 @@ import {
   useSelect,
   useOverlayPosition,
   useOverlayTrigger,
-  mergeProps,
 } from 'react-aria';
 import { useSelectState } from 'react-stately';
 
 import Button from '../button/Button';
 import { Overley } from '../pop-over/PopOver';
 import ListBox from '../list-box/ListBox';
+import './style.css';
 
 const Select = forwardRef((props, ref) => {
   const { label, defaultOption, name, style, buttonStyle } = props;
   const state = useSelectState(props);
 
+  ref = ref ? ref : useRef(null);
   const overlayRef = useRef(null);
   const listBoxRef = useRef(null);
 
@@ -42,30 +43,31 @@ const Select = forwardRef((props, ref) => {
     offset: 5,
     isOpen: state.isOpen,
   });
+
+  console.log(menuProps);
   return (
-    <div
-      ref={overlayRef}
-      style={{ position: 'relative', display: 'inline-block', ...style }}
-    >
+    <div ref={overlayRef} style={style}>
       <div {...labelProps}>{label}</div>
       <HiddenSelect state={state} triggerRef={ref} label={label} name={name} />
-      <Button
-        onClick={triggerProps?.onPress}
-        {...mergeProps(triggerProps, overlayTriggerProps)}
-        ref={ref}
-        style={{ ...buttonStyle }}
-      >
-        <span {...valueProps}>
-          {state.selectedItem
-            ? state.selectedItem?.rendered
-            : defaultOption
-            ? defaultOption
-            : 'Select an Option'}
-        </span>
-        <span aria-hidden="true" style={{ paddingLeft: 5 }}>
-          ▼
-        </span>
-      </Button>
+      <div className="container">
+        <Button
+          onClick={overlayTriggerProps?.onPress}
+          {...overlayTriggerProps}
+          ref={ref}
+          style={{ ...buttonStyle }}
+        >
+          <span {...valueProps}>
+            {state.selectedItem
+              ? state.selectedItem?.rendered
+              : defaultOption
+              ? defaultOption
+              : 'Select an Option'}
+          </span>
+          <span aria-hidden="true" style={{ paddingLeft: 5 }}>
+            ▼
+          </span>
+        </Button>
+      </div>
       {state.isOpen && (
         <Overley
           isOpen={state.isOpen}

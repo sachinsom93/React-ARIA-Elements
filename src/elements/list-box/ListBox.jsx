@@ -2,6 +2,7 @@ import React, { useRef, forwardRef } from 'react';
 import { useListBox } from 'react-aria';
 import { useListState } from 'react-stately';
 import Option from './Option';
+import './style.css';
 
 const ListBox = forwardRef((props, ref) => {
   const listBoxRef = ref ? ref : useRef();
@@ -12,19 +13,7 @@ const ListBox = forwardRef((props, ref) => {
       <div {...labelProps} style={{ marginBlock: '.5em 0' }}>
         {props.label}
       </div>
-      <ul
-        ref={listBoxRef}
-        {...listBoxProps}
-        style={{
-          padding: '0',
-          margin: '.5em 0',
-          border: '0.5px solid black',
-          listStyle: 'none',
-          maxHeight: '150px',
-          overflow: 'auto',
-          width: '100%',
-        }}
-      >
+      <ul ref={listBoxRef} {...listBoxProps} style={props.style}>
         {[...state.collection].map((item) =>
           item.type === 'section' ? null : (
             <Option item={item} key={item.key} state={state} />

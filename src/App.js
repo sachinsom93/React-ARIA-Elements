@@ -45,12 +45,14 @@ export default function App() {
       <PopOver />
 
       <h2>Select</h2>
-      <Select label="Favorite Color" ref={selectRef}>
+      <Select label="Favorite Color" disabledKeys={['egg']}>
         <ListItem key="lettuce">Lettuce</ListItem>
         <ListItem key="tomato">Tomato</ListItem>
         <ListItem key="cheese">Cheese</ListItem>
         <ListItem key="tuna">Tuna Salad</ListItem>
-        <ListItem key="egg">Egg Salad</ListItem>
+        <ListItem isDisabled="true" key="egg">
+          Egg Salad
+        </ListItem>
         <ListItem key="ham">Ham</ListItem>
       </Select>
     </div>
