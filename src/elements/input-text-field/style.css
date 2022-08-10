@@ -1,0 +1,28 @@
+:root {
+  --error-msg-color: red;
+}
+
+.container__input {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  padding: 0;
+}
+
+.container__input input {
+  padding-block: 0.2em;
+  padding-inline: 0.5em;
+}
+
+.container__input label {
+  font-size: 0.8rem;
+}
+
+.descriptionMsg {
+  font-size: 0.7rem;
+}
+
+.errorMsg {
+  font-size: 0.7rem;
+  color: var(--error-msg-color);
+}

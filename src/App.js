@@ -6,14 +6,18 @@ import ListBox from './elements/list-box/ListBox';
 import ListItem from './elements/list-box/ListItem';
 import PopOver from './elements/pop-over/PopOver';
 import Select from './elements/select/Select';
+import InputTextField from './elements/input-text-field/InputTextField';
+import InputTextAreaField from './elements/input-textarea-field/InputTextAreaField';
+import InputNumberField from './elements/input-number-field/InputNumberField';
 
 export default function App() {
   const selectRef = useRef();
   const [isSeletedBtn, setSelectedBtn] = React.useState(false);
   const [selectedItem, setSelectedItem] = React.useState(new Set(['']));
+  const [inputText, setInputText] = React.useState('');
   return (
     <div>
-      <h1 id="main-title">Hello StackBlitz!</h1>
+      <h1 id="main-title">React ARIA Elements - Demo</h1>
       <h2>Buttons</h2>
       <Button onClick={(e) => console.log(e)}>Press Me</Button>
       <ToggleButton
@@ -55,6 +59,41 @@ export default function App() {
         </ListItem>
         <ListItem key="ham">Ham</ListItem>
       </Select>
+
+      <h2>Input Field</h2>
+      <h3>Simple Input Text Field</h3>
+      <InputTextField
+        label="Enter Your Email"
+        value={inputText}
+        onChange={setInputText}
+        type="email"
+      />
+      <div>Input Value: {inputText}</div>
+
+      <h3>Text Area Input</h3>
+      <InputTextAreaField label="Description Box" />
+
+      <h3>Input with Error Message</h3>
+      <InputTextField
+        label="Create New Password"
+        errorMessage="Password should have special charactors and numbers included."
+      />
+
+      <h3>Input with Description Message</h3>
+      <InputTextField
+        label="Create New Password"
+        description="Password must have atleast 8 charactors with special charactors and numbers. For Example - #23FakePassword"
+      />
+
+      <h3>Number Input</h3>
+      <InputNumberField
+        label="Enter Amount"
+        defaultValue={10000}
+        formatOptions={{
+          style: 'currency',
+          currency: 'indian',
+        }}
+      />
     </div>
   );
 }

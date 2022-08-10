@@ -1,0 +1,24 @@
+.container_textarea {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  padding: 0;
+}
+
+.container_textarea textarea {
+  padding-block: 0.2em;
+  padding-inline: 0.5em;
+}
+
+.container_textarea label {
+  font-size: 0.8rem;
+}
+
+.descriptionMsg {
+  font-size: 0.7rem;
+}
+
+.errorMsg {
+  font-size: 0.7rem;
+  color: var(--error-msg-color);
+}

@@ -44,7 +44,6 @@ const Select = forwardRef((props, ref) => {
     isOpen: state.isOpen,
   });
 
-  console.log(menuProps);
   return (
     <div ref={overlayRef} style={style}>
       <div {...labelProps}>{label}</div>
