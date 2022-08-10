@@ -1,3 +1,3 @@
-# react-aria-elements
+# React ARIA Elements
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/react-aria-elements)
+React Components based on WAI-ARIA Authoring Practices build using react-aria for specifing the behaviour and accessibility.

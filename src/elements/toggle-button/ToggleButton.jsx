@@ -2,10 +2,20 @@ import { useToggleState } from 'react-stately';
 import { useToggleButton } from 'react-aria';
 import React, { useRef } from 'react';
 
-function ToggleButton(props) {
+function ToggleButton({ children, onClick, ...rest }) {
   const btnRef = useRef();
-  const state = useToggleState(props);
-  const { buttonProps, isPressed } = useToggleButton(props, state, btnRef);
+  const state = useToggleState({
+    ...rest,
+    onPress: onClick,
+  });
+  const { buttonProps, isPressed } = useToggleButton(
+    {
+      onPress: onClick,
+      ...rest,
+    },
+    state,
+    btnRef
+  );
 
   return (
     <button
@@ -24,7 +34,7 @@ function ToggleButton(props) {
       }}
       ref={btnRef}
     >
-      {props.children}
+      {children}
     </button>
   );
 }
