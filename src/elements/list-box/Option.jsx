@@ -20,7 +20,7 @@ function Option({ item, state }) {
         background: isSelected ? 'blueviolet' : 'transparent',
         color: isDisabled ? '#aaa' : isSelected ? 'white' : null,
         padding: '2px 5px',
-        outline: isFocusVisible ? '2px solid orange' : 'none',
+        outline: isFocusVisible ? '2px solid black' : 'none',
       }}
     >
       {item.rendered}

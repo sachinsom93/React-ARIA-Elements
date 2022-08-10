@@ -2,10 +2,16 @@ import React, { useRef } from 'react';
 import { useButton, FocusRing } from 'react-aria';
 import './button.css';
 
-function Button(props) {
-  const { children } = props;
+function Button({ children, onClick, ...rest }) {
+  // const { children } = props;
   const btnRef = useRef();
-  const { buttonProps, isPressed } = useButton(props, btnRef);
+  const { buttonProps, isPressed } = useButton(
+    {
+      ...rest,
+      onPress: onClick,
+    },
+    btnRef
+  );
   return (
     <FocusRing focusRingClass="ring">
       <button
