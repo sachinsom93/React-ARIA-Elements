@@ -12,6 +12,7 @@ import InputNumberField from './elements/input-number-field/InputNumberField';
 
 export default function App() {
   const selectRef = useRef();
+  const [numberInput, setNumberInput] = React.useState(10000);
   const [isSeletedBtn, setSelectedBtn] = React.useState(false);
   const [selectedItem, setSelectedItem] = React.useState(new Set(['']));
   const [inputText, setInputText] = React.useState('');
@@ -29,7 +30,6 @@ export default function App() {
       >
         Press Me
       </ToggleButton>
-
       <h2>ListBox</h2>
       <ListBox
         label="Choose sandwich contents"
@@ -44,10 +44,8 @@ export default function App() {
         <ListItem key="egg">Egg Salad</ListItem>
         <ListItem key="ham">Ham</ListItem>
       </ListBox>
-
       <h2>PopOver</h2>
       <PopOver />
-
       <h2>Select</h2>
       <Select label="Favorite Color" disabledKeys={['egg']}>
         <ListItem key="lettuce">Lettuce</ListItem>
@@ -59,7 +57,6 @@ export default function App() {
         </ListItem>
         <ListItem key="ham">Ham</ListItem>
       </Select>
-
       <h2>Input Field</h2>
       <h3>Simple Input Text Field</h3>
       <InputTextField
@@ -69,30 +66,27 @@ export default function App() {
         type="email"
       />
       <div>Input Value: {inputText}</div>
-
       <h3>Text Area Input</h3>
       <InputTextAreaField label="Description Box" />
-
       <h3>Input with Error Message</h3>
       <InputTextField
         label="Create New Password"
         errorMessage="Password should have special charactors and numbers included."
       />
-
       <h3>Input with Description Message</h3>
       <InputTextField
         label="Create New Password"
         description="Password must have atleast 8 charactors with special charactors and numbers. For Example - #23FakePassword"
       />
-
       <h3>Number Input</h3>
       <InputNumberField
         label="Enter Amount"
-        defaultValue={10000}
-        // formatOptions={{
-        //   style: 'currency',
-        //   currency: 'indian',
-        // }}
+        value={numberInput}
+        onChange={setNumberInput}
+        formatOptions={{
+          style: 'currency',
+          currency: 'USD',
+        }}
       />
     </div>
   );
